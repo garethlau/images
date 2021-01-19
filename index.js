@@ -29,6 +29,8 @@ app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
+
+app.use(require('./routes'));
 app.use(logErrors);
 app.use(clientErrorHandler);
 app.use(errorHandler);
