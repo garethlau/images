@@ -7,7 +7,7 @@ const {
   logErrors,
   clientErrorHandler,
   errorHandler,
-} = require('./middlewares/errorHander');
+} = require('./middlewares/errorHandler');
 
 const PORT = process.env.PORT || 5000;
 const NODE_ENV = process.env.NODE_ENV;
