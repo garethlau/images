@@ -2,12 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
+const apicache = require('apicache');
 require('./utils/logger'); // Setup winston logger
 const {
   logErrors,
   clientErrorHandler,
   errorHandler,
 } = require('./middlewares/errorHandler');
+
 const { PORT, NODE_ENV } = require('./config');
 
 const whitelist = ['http://localhost:3000', 'http://localhost:5000/'];
@@ -22,6 +24,10 @@ const corsOptions = {
   },
   credentials: true,
 };
+
+apicache.options({
+  enabled: NODE_ENV !== 'development', // Disable caching in development
+});
 
 const app = express();
 app.use(cors(corsOptions));

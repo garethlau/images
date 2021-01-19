@@ -4,8 +4,10 @@ const upload = require('../../middlewares/upload');
 const s3 = require('../../s3');
 const sharp = require('sharp');
 const { S3_BUCKET_NAME } = require('../../config');
+const apicache = require('apicache');
+const cache = apicache.middleware;
 
-router.get('/:key', async (req, res, done) => {
+router.get('/:key', cache('24 hours'), async (req, res, done) => {
   const { key } = req.params;
   const { w, h } = req.query;
   const width = parseInt(w);
